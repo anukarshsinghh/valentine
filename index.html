@@ -11,7 +11,6 @@ body{
     background:linear-gradient(120deg,#ffccd5,#ffe6f0);
     overflow:hidden;
     margin-top:120px;
-    transition:1s;
 }
 
 h1{
@@ -29,7 +28,6 @@ button{
     transition:0.3s;
 }
 
-/* YES always clickable */
 #yes{
     background:#ff4da6;
     color:white;
@@ -37,7 +35,6 @@ button{
     z-index:10;
 }
 
-/* NO moves */
 #no{
     background:#ddd;
     position:relative;
@@ -85,14 +82,15 @@ function moveNo(){
 
 function nextStep(){
 
-    document.getElementById("bgmusic").play();
-
     if(step === 1){
         document.getElementById("question").innerHTML =
         "Will you accept my rose? 💌";
         step = 2;
     }
     else if(step === 2){
+
+        /* PLAY SONG ONLY NOW */
+        document.getElementById("bgmusic").play();
 
         document.body.innerHTML =
         "<h1 id='title' style='color:#ff1a75;font-size:60px'></h1>\
@@ -117,7 +115,7 @@ function hearts(){
     },300);
 }
 
-/* typewriter */
+/* typewriter text */
 function typeWriter(){
     let titleText = "Happy Rose Day Bettu 🌹";
     let messageText = "I really like you ❤️";
