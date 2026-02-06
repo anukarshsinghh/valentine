@@ -29,10 +29,24 @@ button{
     transition:0.3s;
 }
 
-#yes{ background:#ff4da6; color:white; }
-#no{ background:#ddd; }
+/* YES always clickable */
+#yes{
+    background:#ff4da6;
+    color:white;
+    position:relative;
+    z-index:10;
+}
 
-button:hover{ transform:scale(1.1); }
+/* NO moves */
+#no{
+    background:#ddd;
+    position:relative;
+    z-index:1;
+}
+
+button:hover{
+    transform:scale(1.1);
+}
 
 .heart{
     position:fixed;
@@ -83,4 +97,53 @@ function nextStep(){
         document.body.innerHTML =
         "<h1 id='title' style='color:#ff1a75;font-size:60px'></h1>\
         <p id='message' style='font-size:26px;color:#cc0066'></p>\
-        <p style='pos
+        <p style='position:absolute; right:40px; bottom:40px; font-size:16px;color:#cc0066'>From Mannat to my Shambhavi</p>";
+
+        hearts();
+        typeWriter();
+    }
+}
+
+/* floating hearts */
+function hearts(){
+    setInterval(()=>{
+        let heart = document.createElement("div");
+        heart.className="heart";
+        heart.style.left = Math.random()*100 + "vw";
+        heart.innerHTML="❤";
+        heart.style.fontSize = (Math.random()*20+20)+"px";
+        document.body.appendChild(heart);
+        setTimeout(()=>heart.remove(),6000);
+    },300);
+}
+
+/* typewriter */
+function typeWriter(){
+    let titleText = "Happy Rose Day Bettu 🌹";
+    let messageText = "I really like you ❤️";
+
+    let i = 0;
+    let j = 0;
+
+    function writeTitle(){
+        if(i < titleText.length){
+            document.getElementById("title").innerHTML += titleText.charAt(i);
+            i++;
+            setTimeout(writeTitle,80);
+        } else writeMessage();
+    }
+
+    function writeMessage(){
+        if(j < messageText.length){
+            document.getElementById("message").innerHTML += messageText.charAt(j);
+            j++;
+            setTimeout(writeMessage,60);
+        }
+    }
+
+    writeTitle();
+}
+</script>
+
+</body>
+</html>
